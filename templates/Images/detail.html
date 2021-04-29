@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Image{% endblock %}
+
+{% block content %}
+    {% load static %}
+<div class="imagediv">
+    <img class="imagedetail" src="{% static link.image %}" alt="" >
+</div>
+    <form action="{% url 'media:addLikeDislike' link.id %}" method="POST">
+    {% csrf_token %}
+        <input type="hidden" value="{{ user.id }}" name="nameId">
+        {% if user.is_authenticated %}
+            <button type="submit" name="like">Like!</button>
+            <button type="submit" name="dislike">Dislike!</button>
+        {% else %}
+            <a class="ml-2" href="{% url 'login' %}">Log In to leave likes and dislikes</a>
+        {% endif %}
+        <br>
+    <h5>Likes: {{ link.likes }}</h5>
+        <br>
+    <h5>Dislikes: {{ link.dislikes }}</h5>
+    </form>
+
+{% endblock %}

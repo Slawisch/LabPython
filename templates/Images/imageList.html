@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Images{% endblock %}
+
+{% block content %}
+    <form action=""></form>
+    
+    {% load static %}
+    {% if images_List %}
+
+        {% for a in images_List %}
+            <a href="{% url 'media:detail' a.id %}" style="display: inline-block">
+                <img src="{% static a.image %}" alt="" width="400px" style="display: block; margin: 20px; border: 1px solid gray;">
+            </a>
+        {% endfor %}
+
+    {% endif %}
+
+{% endblock %}
